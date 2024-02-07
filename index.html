@@ -1,92 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Jumbotron Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Meng MAE4190 Lab Portfolio</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">MENGTING LI</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#home">Home</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#lab">Lab 1</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Heading-->
+                <h1 class="masthead-heading text-uppercase mb-0">FAST ROBOTS</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Masthead Subheading-->
+                <p class="masthead-subheading font-weight-light mb-0"> This site displays the work I've completed in MAE4190: Fast Robots.</p>
             </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
+        </header>
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Labs</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Grid Items-->
+                <div class="row justify-content-center">
+                    <!-- Portfolio Item 1-->
+                    <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/artemis.jpeg" alt="..." />
+                        </div>
+                        <h5 class="text-center">Lab 1: Artemis</h5>
+                    </div>
+                    <!-- Portfolio Item 2 -->
+                    <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                            <h5 class="text-center">Lab 2: TOF</h5>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 3-->
+                    <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                        </div>
+                        <h5 class="text-center">Lab 3: IMU</h5>
+                    </div>
+                    <!-- Portfolio Item 4-->
+                    <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal4">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                        </div>
+                        <h5 class="text-center">Lab 4: Open Loop Control</h5>
+                    </div>
+                    <!-- Portfolio Item 5-->
+                    <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                            <h5 class="text-center">Lab 5: PID Control</h5>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 6-->
+                    <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal6">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                        </div>
+                        <h5 class="text-center">Lab 6: Kalman Filters</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- Footer Location-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Location</h4>
+                        <p class="lead mb-0">
+                            Cornell University
+                            <br />
+                            Ithaca, NY 14850
+                        </p>
+                    </div>
+                    <!-- Footer Social Icons-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="text-uppercase mb-4">Around the Web</h4>
+                        <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/mengtingli1225/"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                    </div>
+                    <!-- Footer About Text-->
+                    <div class="col-lg-4">
+                        <h4 class="text-uppercase mb-4">About Me</h4>
+                        <p class="lead mb-0">
+                            Hi! I'm Meng, an undergraduate senior majoring in mechanical engineering and minoring in computer science :)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Portfolio Modals-->
+        <!-- Portfolio Modal 1-->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 1<h3 class="text-warning">Artemis</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/artemis.jpeg" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <h3>PART I: GOAL</h3>
+                                    <p class="text-left">The purpose of the first portion of this lab was to become acquainted with the Arduino IDE and the Artemis Nano microcontroller. This involved testing a few different functionalities of the Artemis board, including the LED light, the serial output, the temperature sensor, and the microphone. Since the Artemis board would be used as a microcontroller in future labs, it was imperative to understand it's design. </p>
+                                    <h3>SETUP</h3>
+                                    <ul style="list-style-type:none;">
+                                      <li>The materials required for this lab include:</li>
+                                      <li>1. A SparkFun RedBoard Artemis Nano</li>
+                                      <li>2. A USB C-to-C or A-to-C cable</li>
+                                      <li>3. The Arduino IDE, which can be installed from <a href="https://www.arduino.cc/en/software">here</a></li>
+                                    </ul>
+                                    <h3>EXAMPLE 1: Blink it Up</h3>
+                                    <p>To test the LED on the board, a built-in example from the Arduino IDE was used. The code turned the LED light on for one second, then off for one second, repeatedly. The results are as shown in the video:</p>
+                                    <div class="embed-container">
+                                      <iframe width="480" height="300" src="https://www.youtube.com/embed/_RYOr5E5tyE" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                    <p> </p>
+                                    <h3>EXAMPLE 2: Serial</h3>
+                                    <p>The second example involved testing the serial monitor output. The Arduino IDE was used to pass text inputs to the Artemis board, which would then be sent back to the serial monitor in the Arduino IDE from the microcontroller on the board.</p>
+                                    <div class="embed-container">
+                                      <iframe width="480" height="300" src="https://www.youtube.com/embed/4_aSxQzvBfo" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                    <p></p>
+                                    <h3>EXAMPLE 3: Analog Read</h3>
+                                    <p>This example tested the temperature sensor on the Artemis board. The sample code sends data from the temperature sensor on the board to the serial monitor in the Arduino IDE. When the chip was blown on or heated up by hand, the temperature readings increased. In the video below, the temperature readings increased as I was blowing air onto the board. </p>
+                                    <div class="embed-container">
+                                      <iframe width="480" height="300" src="https://www.youtube.com/embed/qc5g7ligoZU" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                    <p></p>
+                                    <h3>EXAMPLE 4: Microphone Output</h3>
+                                    <p>The last example tested the pulse density microphone (PDM) on the Artemis board. The built-in example from the Arduino IDE returns the highest frequency of sound captured. The video shows the micrphone capturing three "Hello"s said at different pitches.</p>
+                                    <div class="embed-container">
+                                      <iframe width="480" height="300" src="https://www.youtube.com/embed/LLHOArgsDcw" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                    <p></p>
+                                    <h3>PART 2: GOAL</h3>
+                                    <p class="text-left"> The objective of the second portion of this lab as to set up the Bluetooth connection between the Artemis board and a computer. The Python code written for the Bluetooth connection would be used in the future labs.</p>
+                                    <h3>SETUP</h3>
+                                    <ul style="list-style-type:none;">
+                                      <li>The materials required for this lab include:</li>
+                                      <li>1. Python 3</li>
+                                      <li>2. A virtual enviornment</li>
+                                    </ul>
+                                    <p>The virtual environment can be set up by running the following commands:<br>
+                                    <code>
+                                      python3 -m pip install --user virtualenv<br>
+                                      python3 -m venv FastRobots_ble
+                                    </code></p>
+                                    <p>The virtual environment then needs to be activated and started in a Jupyter Server:<br>
+                                    <code>
+                                      source FastRobots_ble/bin/activate<br>
+                                      pip install numpy pyyaml colorama nest_asyncio bleak jupyterlab<br>
+                                      jupyter lab
+                                    </code></p>
+                                    <p>Once the Artemis board was connected to the computer, the first step was to update the Artemis MAC address. 
+                                      This can be done by replacing the artemis_address value in the lab document with the MAC address printed by the Artemis board.
+                                      By doing so, the Python code can now read the device through Bluetooth and connect to the Artemis board.
+                                      Following this, a unique UUID address was generated to create a unique connection to my Artemis board, and not one of my classmate's boards. 
+                                      Because many of the Artemis boards used for this class share the same MAC address, it was possible for the Python code to connect to a different board.
+                                      The generated UUID was used in the provided Python scripts to ensure a Bluetooth connection to my own board. 
+                                      An UUID was generated with the following code:<br>
+                                      <code>
+                                        from uuid import uuid4 <br>
+                                        uuid4()
+                                      </code>
+                                    </p>
+                                    <p>The Bluetooth connection was established, as shown:
+                                      <img class="img-fluid rounded" src="assets/img/bluetooth.png" alt="..." />
+                                    </p>
+                                    <h3>TASK 1: ECHO</h3>
+                                    <p>In developing a wireless debugging system, the first step was sending an ECHO command with a string value from the computer to the 
+                                      Artemis board. The string would then be sent back to the Python code. 
+                                      To achieve this, the ECHO command was defined as a command type in ble_arduino.ino and cmd_types.py.
+                                      The Arduino code to perform the command: <br>
+                                      <img class="img-fluid rounded" width="480" src="assets/img/echo.png" alt="..." />
+                                    </p>
+                                    <p>The Python code and the output:
+                                      <img class="img-fluid rounded" src="assets/img/echo_py.png" alt="..." />
+                                    </p>
+                                    <h3>TASK 2: GET_TIME_MILLIS</h3>
+                                    <p>The next step involved adding a command to get a timestamp. I used the Arduino function millis() to get the time in milliseconds.
+                                      The new command GET_TIME_MILLIS was defined as a new command type in ble_arduino.ino and cmd_types.py, similar to the ECHO command. 
+                                      The Arduino code: <br>
+                                      <img class="img-fluid rounded" width="450" src="assets/img/get_time_millis.png" alt="..." />
+                                    </p>
+                                    <p>The Python code and the output:
+                                      <img class="img-fluid rounded" src="assets/img/get_time_millis_py.png" alt="..." />
+                                    </p>
+                                    <h3>TASK 3: Notification Handler</h3>
+                                    <p>In writing a callback function, the Python code can gather data without calling the receive function. 
+                                      A helper function was defined as the notification handler. When the notification handler is started, any changes from the
+                                      Bluetooth device would be sent to the computer. Once it has been started and the command GET_TIME_MILLIS is sent,
+                                      the most recent value for the timestamp would automatically be sent to the computer.
+                                      The Python code and the output: <br>
+                                      <img class="img-fluid rounded" src="assets/img/notifhandler.png" alt="..." />
+                                    </p>
+                                    <h3>TASK 4: GET_TIME_LOOP</h3>
+                                    <p>To determine how fast messages are sent from the Artemis board, another command was written. The new command was defined as a new command type in ble_arduino.ino and cmd_types.py.
+                                      When called, GET_TIME_LOOP runs a loop that gets the current time in milliseconds, which is sent and processed by the notification handler in the Python code.
+                                      Timestamps were collected for a few seconds, which helps in determining how fast messages are sent.
+                                      The Arduino code:<br>
+                                      <img class="img-fluid rounded" width="450" src="assets/img/get_time_loop.png" alt="..." /><br>
+                                      The Python code and the output:<br>
+                                      <img class="img-fluid rounded" src="assets/img/loop_output.png" alt="..." /><br>
+                                      By observing the output of the loop, the effective data transfer rate of this method is roughly 5 ms.
+                                    </p>
+                                    <h3>TASK 5: Timestamps Array</h3>
+                                    <p>The next task involved creating an array capably of storing timestamps. This array was declared globally so that it could be 
+                                      accessed by other functions. The command GET_TIME_LOOP was edited to insert each timestamp into the array, instead of immediately sending timestamps within a loop.
+                                      Then, a new command, SEND_TIME_DATA, was created to iterate through the array and transmit each timestamp as a string to the computer for processing.
+                                      A global variable, MAX_TIME_STAMPS, was created to determine the maximum number of time stamps to store. Additionally, num_time_stamps was declared to track
+                                      the number of time stamps already stored in the array to prevent overfill.<br>
+                                      The Arduino code: <br>
+                                      <img class="img-fluid rounded" width="450" src="assets/img/send_time_data.png" alt="..." /><br>
+                                      The Python code and the output:<br>
+                                      <img class="img-fluid rounded" src="assets/img/send_time_py.png" alt="..." /><br>
+                                      
+                                    </p>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-      </div>
-    </div>
 
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <!-- Portfolio Modal 2-->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 2<h3 class="text-warning">TOF</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <hr>
-
-      <footer>
-        <p>&copy; 2016 Company, Inc.</p>
-      </footer>
-    </div> <!-- /container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+        <!-- Portfolio Modal 3-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 3<h3 class="text-warning">IMU</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 4-->
+        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 4<h3 class="text-warning">Motor Driver and Open Loop Control</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 5-->
+        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 5<h3 class="text-warning">PID Speed Control</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 6-->
+        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" aria-labelledby="portfolioModal6" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 6<h3 class="text-warning">Kalman Filters (Sensor Fusion)</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
 </html>
