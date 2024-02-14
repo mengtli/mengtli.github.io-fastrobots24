@@ -67,7 +67,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/artemis.jpeg" alt="..." />
+                            <img class="img-fluid rounded mb-5" src="assets/img/lab1/artemis.jpeg" alt="..." />
                         </div>
                         <h5 class="text-center">Lab 1: Artemis</h5>
                     </div>
@@ -77,8 +77,8 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
-                            <h5 class="text-center">Lab 2: TOF</h5>
+                            <img class="img-fluid rounded mb-5" src="assets/img/lab2/imu.jpeg" alt="..." />
+                            <h5 class="text-center">Lab 2: IMU</h5>
                         </div>
                     </div>
                     <!-- Portfolio Item 3-->
@@ -89,7 +89,7 @@
                             </div>
                             <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
                         </div>
-                        <h5 class="text-center">Lab 3: IMU</h5>
+                        <h5 class="text-center">Lab 3: TOF</h5>
                     </div>
                     <!-- Portfolio Item 4-->
                     <div class="col-sm-3">
@@ -171,7 +171,7 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/artemis.jpeg" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/lab1/artemis.jpeg" alt="..." />
                                     <!-- Portfolio Modal - Text-->
                                     <h3>PART I: GOAL</h3>
                                     <p class="text-left">The purpose of the first portion of this lab was to become acquainted with the Arduino IDE and the Artemis Nano microcontroller. This involved testing a few different functionalities of the Artemis board, including the LED light, the serial output, the temperature sensor, and the microphone. Since the Artemis board would be used as a microcontroller in future labs, it was imperative to understand it's design. </p>
@@ -238,26 +238,26 @@
                                       </code>
                                     </p>
                                     <p>The Bluetooth connection was established, as shown:
-                                      <img class="img-fluid rounded" src="assets/img/bluetooth.png" alt="..." />
+                                      <img class="img-fluid rounded" src="assets/img/lab1/bluetooth.png" alt="..." />
                                     </p>
                                     <h3>TASK 1: ECHO</h3>
                                     <p>In developing a wireless debugging system, the first step was sending an ECHO command with a string value from the computer to the 
                                       Artemis board. The string would then be sent back to the Python code. 
                                       To achieve this, the ECHO command was defined as a command type in ble_arduino.ino and cmd_types.py.
                                       The Arduino code to perform the command: <br>
-                                      <img class="img-fluid rounded" width="480" src="assets/img/echo.png" alt="..." />
+                                      <img class="img-fluid rounded" width="480" src="assets/img/lab1/echo.png" alt="..." />
                                     </p>
                                     <p>The Python code and the output:
-                                      <img class="img-fluid rounded" src="assets/img/echo_py.png" alt="..." />
+                                      <img class="img-fluid rounded" src="assets/img/lab1/echo_py.png" alt="..." />
                                     </p>
                                     <h3>TASK 2: GET_TIME_MILLIS</h3>
                                     <p>The next step involved adding a command to get a timestamp. I used the Arduino function millis() to get the time in milliseconds.
                                       The new command GET_TIME_MILLIS was defined as a new command type in ble_arduino.ino and cmd_types.py, similar to the ECHO command. 
                                       The Arduino code: <br>
-                                      <img class="img-fluid rounded" width="450" src="assets/img/get_time_millis.png" alt="..." />
+                                      <img class="img-fluid rounded" width="450" src="assets/img/lab1/get_time_millis.png" alt="..." />
                                     </p>
                                     <p>The Python code and the output:
-                                      <img class="img-fluid rounded" src="assets/img/get_time_millis_py.png" alt="..." />
+                                      <img class="img-fluid rounded" src="assets/img/lab1/get_time_millis_py.png" alt="..." />
                                     </p>
                                     <h3>TASK 3: Notification Handler</h3>
                                     <p>In writing a callback function, the Python code can gather data without calling the receive function. 
@@ -265,16 +265,16 @@
                                       Bluetooth device would be sent to the computer. Once it has been started and the command GET_TIME_MILLIS is sent,
                                       the most recent value for the timestamp would automatically be sent to the computer.
                                       The Python code and the output: <br>
-                                      <img class="img-fluid rounded" src="assets/img/notifhandler.png" alt="..." />
+                                      <img class="img-fluid rounded" src="assets/img/lab1/notifhandler.png" alt="..." />
                                     </p>
                                     <h3>TASK 4: GET_TIME_LOOP</h3>
                                     <p>To determine how fast messages are sent from the Artemis board, another command was written. The new command was defined as a new command type in ble_arduino.ino and cmd_types.py.
                                       When called, GET_TIME_LOOP runs a loop that gets the current time in milliseconds, which is sent and processed by the notification handler in the Python code.
                                       Timestamps were collected for a few seconds, which helps in determining how fast messages are sent.
                                       The Arduino code:<br>
-                                      <img class="img-fluid rounded" width="450" src="assets/img/get_time_loop.png" alt="..." /><br>
+                                      <img class="img-fluid rounded" width="450" src="assets/img/lab1/get_time_loop.png" alt="..." /><br>
                                       The Python code and the output:<br>
-                                      <img class="img-fluid rounded" src="assets/img/loop_output.png" alt="..." /><br>
+                                      <img class="img-fluid rounded" src="assets/img/lab1/loop_output.png" alt="..." /><br>
                                       By observing the output of the loop, the effective data transfer rate of this method is roughly 5 ms.
                                     </p>
                                     <h3>TASK 5: Timestamps Array</h3>
@@ -284,18 +284,18 @@
                                       A global variable, max_time_stamps, was created to determine the maximum number of time stamps to store. Additionally, num_time_stamps was declared to track
                                       the number of time stamps already stored in the array to prevent overfill.<br>
                                       The Arduino code: <br>
-                                      <img class="img-fluid rounded" width="450" src="assets/img/send_time_data.png" alt="..." /><br>
+                                      <img class="img-fluid rounded" width="450" src="assets/img/lab1/send_time_data.png" alt="..." /><br>
                                       The Python code and the output:<br>
-                                      <img class="img-fluid rounded" src="assets/img/send_time_py.png" alt="..." /><br>
+                                      <img class="img-fluid rounded" src="assets/img/lab1/send_time_py.png" alt="..." /><br>
                                     </p>
                                     <h3>TASK 5: Temperature Array</h3>
                                     <p>After storing a set of timestamps in an array, I initialized a second array that would store the temperature readings corresponding
                                       to each timestamp. Both arrays would be the same size. The command GET_TEMP_READINGS was used to iterate through both arrays 
                                       concurrently, sending the temperature readings with its corresponding timestamp.
                                       The Arduino code: <br>
-                                      <img class="img-fluid rounded" width="450" src="assets/img/get_temp_readings.png" alt="..." /><br>
+                                      <img class="img-fluid rounded" width="450" src="assets/img/lab1/get_temp_readings.png" alt="..." /><br>
                                       The Python code and the output:<br>
-                                      <img class="img-fluid rounded" src="assets/img/get_temp_readings_py.png" alt="..." /><br>
+                                      <img class="img-fluid rounded" src="assets/img/lab1/get_temp_readings_py.png" alt="..." /><br>
                                     </p>
                                     <h3>DISCUSSION</h3>
                                     <P>Through this lab, I've learned about two methods of sending data: sending each data point individually vs. storing the data points in arrays and 
@@ -329,7 +329,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 2<h3 class="text-warning">TOF</h3></h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 2<h3 class="text-warning">IMU</h3></h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -337,9 +337,95 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <img class="img-fluid rounded mb-5" width="300" src="assets/img/lab2/imu.jpeg" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <h3>GOAL</h3>
+                                    <p>The purpose of this lab involved familiarizing ourselves with the IMU sensor and the RC car. 
+                                        We collected data from the accelerometer and the gyroscope on the sensor, which were then used to calculate 
+                                        information on the orientation and location of the car.
+                                    </p>
+                                    <h3>SETUP</h3>
+                                    <ul style="list-style-type:none;">
+                                        <li>The materials required for this lab include:</li>
+                                        <li>1. An Artemis Nano board</li>
+                                        <li>2. A 9DOF IMU sensor</li>
+                                        <li>3. A Li-Ion 3.7V 850mAh battery</li>
+                                        <li>4. A USB cable</li>
+                                        <li>5. A Force1 RC car</li>
+                                    </ul>
+                                    <p>The image below shows the IMU sensor connected to the Artemis Nano board by a QWIIC connector.
+                                        <img class="img-fluid rounded" width="200" src="assets/img/lab2/setup.jpeg" alt="..." />
+                                    </p>
+                                    <p>To ensure the connection of the sensor, an example from the IMU library was used. 
+                                        In the example code, the variable AD0_VAL represents the value of the last bit in the I2C address.
+                                        For this case, AD0_VAL should be set to 0 since the ADR jumper is closed. 
+                                        In addition to this change, a chunk of code was added such that when the board started running,
+                                        the LED on the board would blink three times. This served as a visual indication
+                                        that would be helpful later in the lab. <br>
+                                        The Arduino code, along with the Serial Monitor output:
+                                        <img class="img-fluid rounded" src="assets/img/lab2/example.png" alt="..." />
+                                    </p>
+                                    <p>While observing the acceleration and gyroscope data, I noticed a few things:
+                                        When the board is rotated, the gyroscope data changes according to the axes of rotation, while the accelerometer data doesn't change.
+                                        As an example, when the board is rotated around the z-axis, there are changes on the gyroscope data for the z-axis.
+                                        Flipping the board reflects the same results as rotating the board, but a more sudden change with the gyroscope.
+                                        Accelerating the board results in changes in the accelerometer data. For example, accelerating the board forward
+                                        results in an increase in acceleration along the x-axis. In summary, the gyroscope detects angular velocity around its
+                                        axes, while the accelerometer detects linear acceleration along its axes.
+                                    </p>
+                                    <h3>ACCELEROMETER TASK 1</h3>
+                                    <p>The accelerometer on the IMU can be useful in calculating the roll and pitch values, with the equations:<br>
+                                        θ = pitch = tan<sup>-1</sup>(<sup>a<sub>x</sub></sup>/<sub>a<sub>z</sub></sub>) <br>
+                                        ø = roll = tan<sup>-1</sup>(<sup>a<sub>y</sub></sup>/<sub>a<sub>z</sub></sub>) <br>
+                                        After implementing these functions in Arduino, the pitch and roll data can be observed through the Serial Monitor and the Serial Plotter. The Serial Plotter output at {-90, 0, 90} degrees for pitch and roll:
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/I-grgxpVEdg" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        The Serial Plotter displays the noisy nature of the accelerometer on the IMU. When looking at the ends of the plot, it looks like the accelerometer has determined the -90 degrees and 90 degrees accurately. Although at the end of the plot where it should be 90 degrees, the output was around 100 degrees. This may be due to human error, where I didn't exactly end the turn at 90 degrees. With this being said, a two-point calibration wasn't necessary.
+                                    </p>
+                                    <h3>ACCELEROMETER TASK 2</h3>
+                                    <p>To analyze the noise in the frequency spectrum, the Fourier Transform was used. Using this <a href="https://www.arduino.cc/en/software">Python tutorial</a>, the accelerometer's pitch and roll data were plotted over the time domain, as well as the frequency domain. The output plots:<br>
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab2/pitch_time.png" alt="..." />
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab2/pitch_freq.png" alt="..." /> <br>
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab2/roll_time.png" alt="..." />
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab2/roll_freq.png" alt="..." /> <br>
+                                        Analyzing the graphs, there isn't much noise in the IMU accelerometer data. Because there weren't any noticeable spikes or high amplitudes during low frequencies, a low-pass filter isn't needed. Since the low-pass filter has already been implemented on the IMU by default, there is no need for another one. <br>
+                                    </p>
+                                    <h3>ACCELEROMETER TASK 3</h3>
+                                    <p>
+                                        Although there wasn't much noise in the data, I applied a low-pass filter because the accelerometer will be more prone to noise while the car is closer in proximity. The cutoff frequency was determined by looking at the frequency spectrum, and determining a number that is below the frequencies of interest in the signal but above the frequencies containing most of the noise. The sample rate of the accelerometer affects the choice of cutoff frequency primarily due to the Nyquist frequency. The cutoff frequency should be chosen below the Nyquist frequency to avoid aliasing and accurately capture the signal's frequency content. When enough force was used to induce a vibration on the table, there were vibratonal noises, which led to additional high-frequency components to the accelerometer data. Consequently, the choice of cutoff frequency for the lowpass filter becomes crucial to effectively filter out this added noise while preserving the essential features of the signal.<br>
+                                        The results show a smoother curve with the effects of noise significantly reduced:<br>
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab2/lpf_data.png" alt="..." /> <br>
+                                    </p>
+                                    <h3>GYROSCOPE TASK 1</h3>
+                                    <p>The gyroscope data can be used to calculate roll, pitch, and yaw values, with the equations:<br>
+                                        ø = roll = ø + g<sub>x</sub> * dt<br>
+                                        θ = pitch = θ + g<sub>y</sub> * dt<br>
+                                        ψ = yaw = ψ + g<sub>z</sub> * dt<br>
+                                        While playing around with the IMU, the Serial Plotter displays:
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/AyggDPumNlE" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        The readings from the gyroscope displayed a drift over time, which may be due to integration errors. This means that the time delay increases as time passes. On the other hand, the gyroscope provided more accurate data during rapid movements or vibrations, mainly because the accelerometer readings are affected by inertial forces. While increasing the sampling frequency improves the accuracy on gyroscope readings by reducing the integration error over shorter time intervals, higher sampling frequencies may increase power consumption and processing load. To overcome the limitations of each sensor, a complimentary filter was used to compute pitch and roll values that are accurate and stable. The equations are:<br>
+                                        θ = pitch = (θ + θ<sub>g</sub> * dt)(1 - α) + θ<sub>α</sub> * α<br>
+                                        ø = roll = (ø + ø<sub>g</sub> * dt)(1 - α) + ø<sub>α</sub> * α<br>
+                                        The choice of alpha represented the trade-off between response time and noise reduction. After changing the alpha value a few times and observing the changes in data, I settled with 0.2.<br>
+                                        With the complementary filter:<br>
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/7z5Dc329O7Q" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        The combined measurements from the accelerometer and gyroscope stability and accuracy, or at least more stable and more accurate than the measurements from each separately.
+                                    </p>
+                                    <h3>SAMPLE DATA</h3>
+                                    <p>Following this, I took a few steps to speed up the execution time for the main loop. I made sure to check whether the IMU data was ready or not in every iteration of the main loop before storing the data into the array. I removed all delays and unnecessary Serial.print statements. With these improvements, the sampling rate is now 3ms for new data. The main loop on the Artemis is running faster than the IMU produces new values!  The Arduino code:<br>
+                                        <img class="img-fluid rounded" width="550" src="assets/img/lab2/sample_data_arduino.png" alt="..." /> <br>
+                                        The Python script and output:<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab2/sample_data_python.png" alt="..." /> <br>
+                                    </p>
+                                    <h3>RECORD A STUNT!</h3>
+                                    <p>
+                                        Unfortunately, my RC car was not responding correctly to the remote. After connecting batteries to the car and putting batteries in the remote, the car turned on. However, it only responds to the forward button. The car moves forward, but also at an extremely slow rate. I asked Jonathan (the instructor of the course) about it after the lecture today and he suggested bringing it into my lab session tomorrow to get it checked out.
+                                    </p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
@@ -361,7 +447,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 3<h3 class="text-warning">IMU</h3></h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 3<h3 class="text-warning">TOF</h3></h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
