@@ -67,7 +67,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/lab1/artemis.jpeg" alt="..." />
+                            <img class="img-fluid rounded mb-5" width="212" src="assets/img/lab1/artemis.jpeg" alt="..." />
                         </div>
                         <h5 class="text-center">Lab 1: Artemis</h5>
                     </div>
@@ -77,7 +77,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/lab2/imu.jpeg" alt="..." />
+                            <img class="img-fluid rounded mb-5" width="212" src="assets/img/lab2/imu2.jpeg" alt="..." />
                             <h5 class="text-center">Lab 2: IMU</h5>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                            <img class="img-fluid rounded mb-5" width="258" src="assets/img/lab3/tof.jpg" alt="..." />
                         </div>
                         <h5 class="text-center">Lab 3: TOF</h5>
                     </div>
@@ -228,10 +228,7 @@
                                     <p>Once the Artemis board was connected to the computer, the first step was to update the Artemis MAC address. 
                                       This can be done by replacing the artemis_address value in the lab document with the MAC address printed by the Artemis board.
                                       By doing so, the Python code can now read the device through Bluetooth and connect to the Artemis board.
-                                      Following this, a unique UUID address was generated to create a unique connection to my Artemis board, and not one of my classmate's boards. 
-                                      Because many of the Artemis boards used for this class share the same MAC address, it was possible for the Python code to connect to a different board.
-                                      The generated UUID was used in the provided Python scripts to ensure a Bluetooth connection to my own board. 
-                                      An UUID was generated with the following code:<br>
+                                      Following this, a unique UUID address was generated to create a unique connection to my Artemis board, and not one of my classmate's boards. Because many of the Artemis boards used for this class share the same MAC address, it was possible for the Python code to connect to a different board. The generated UUID was used in the provided Python scripts to ensure a Bluetooth connection to my own board. An UUID was generated with the following code:<br>
                                       <code>
                                         from uuid import uuid4 <br>
                                         uuid4()
@@ -251,9 +248,7 @@
                                       <img class="img-fluid rounded" src="assets/img/lab1/echo_py.png" alt="..." />
                                     </p>
                                     <h3>TASK 2: GET_TIME_MILLIS</h3>
-                                    <p>The next step involved adding a command to get a timestamp. I used the Arduino function millis() to get the time in milliseconds.
-                                      The new command GET_TIME_MILLIS was defined as a new command type in ble_arduino.ino and cmd_types.py, similar to the ECHO command. 
-                                      The Arduino code: <br>
+                                    <p>The next step involved adding a command to get a timestamp. I used the Arduino function millis() to get the time in milliseconds. The new command GET_TIME_MILLIS was defined as a new command type in ble_arduino.ino and cmd_types.py, similar to the ECHO command. The Arduino code: <br>
                                       <img class="img-fluid rounded" width="450" src="assets/img/lab1/get_time_millis.png" alt="..." />
                                     </p>
                                     <p>The Python code and the output:
@@ -268,10 +263,7 @@
                                       <img class="img-fluid rounded" src="assets/img/lab1/notifhandler.png" alt="..." />
                                     </p>
                                     <h3>TASK 4: GET_TIME_LOOP</h3>
-                                    <p>To determine how fast messages are sent from the Artemis board, another command was written. The new command was defined as a new command type in ble_arduino.ino and cmd_types.py.
-                                      When called, GET_TIME_LOOP runs a loop that gets the current time in milliseconds, which is sent and processed by the notification handler in the Python code.
-                                      Timestamps were collected for a few seconds, which helps in determining how fast messages are sent.
-                                      The Arduino code:<br>
+                                    <p>To determine how fast messages are sent from the Artemis board, another command was written. The new command was defined as a new command type in ble_arduino.ino and cmd_types.py. When called, GET_TIME_LOOP runs a loop that gets the current time in milliseconds, which is sent and processed by the notification handler in the Python code. Timestamps were collected for a few seconds, which helps in determining how fast messages are sent. The Arduino code:<br>
                                       <img class="img-fluid rounded" width="450" src="assets/img/lab1/get_time_loop.png" alt="..." /><br>
                                       The Python code and the output:<br>
                                       <img class="img-fluid rounded" src="assets/img/lab1/loop_output.png" alt="..." /><br>
@@ -279,35 +271,20 @@
                                     </p>
                                     <h3>TASK 5: Timestamps Array</h3>
                                     <p>The next task involved creating an array capably of storing timestamps. This array was declared globally so that it could be 
-                                      accessed by other functions. The command GET_TIME_LOOP was edited to insert each timestamp into the array, instead of immediately sending timestamps within a loop.
-                                      Then, a new command, SEND_TIME_DATA, was created to iterate through the array and transmit each timestamp as a string to the computer for processing.
-                                      A global variable, max_time_stamps, was created to determine the maximum number of time stamps to store. Additionally, num_time_stamps was declared to track
-                                      the number of time stamps already stored in the array to prevent overfill.<br>
+                                      accessed by other functions. The command GET_TIME_LOOP was edited to insert each timestamp into the array, instead of immediately sending timestamps within a loop. Then, a new command, SEND_TIME_DATA, was created to iterate through the array and transmit each timestamp as a string to the computer for processing. A global variable, max_time_stamps, was created to determine the maximum number of time stamps to store. Additionally, num_time_stamps was declared to track the number of time stamps already stored in the array to prevent overfill.<br>
                                       The Arduino code: <br>
                                       <img class="img-fluid rounded" width="450" src="assets/img/lab1/send_time_data.png" alt="..." /><br>
                                       The Python code and the output:<br>
                                       <img class="img-fluid rounded" src="assets/img/lab1/send_time_py.png" alt="..." /><br>
                                     </p>
                                     <h3>TASK 5: Temperature Array</h3>
-                                    <p>After storing a set of timestamps in an array, I initialized a second array that would store the temperature readings corresponding
-                                      to each timestamp. Both arrays would be the same size. The command GET_TEMP_READINGS was used to iterate through both arrays 
-                                      concurrently, sending the temperature readings with its corresponding timestamp.
-                                      The Arduino code: <br>
+                                    <p>After storing a set of timestamps in an array, I initialized a second array that would store the temperature readings corresponding to each timestamp. Both arrays would be the same size. The command GET_TEMP_READINGS was used to iterate through both arrays concurrently, sending the temperature readings with its corresponding timestamp. The Arduino code: <br>
                                       <img class="img-fluid rounded" width="450" src="assets/img/lab1/get_temp_readings.png" alt="..." /><br>
                                       The Python code and the output:<br>
                                       <img class="img-fluid rounded" src="assets/img/lab1/get_temp_readings_py.png" alt="..." /><br>
                                     </p>
                                     <h3>DISCUSSION</h3>
-                                    <P>Through this lab, I've learned about two methods of sending data: sending each data point individually vs. storing the data points in arrays and 
-                                      sending them in batches. While the first method allows for real-time data transfer and reduces memory usage, sending each timestamp individually incurred
-                                      more overhead. By storing the data in arrays and sending them in batches, the overhead of establishing connections and sending data repeatedly is reduced. 
-                                      This also allows for higher throughput and better efficiency. However, using arrays can introduce latency if the array becomes too large or if the array is 
-                                      filling up. If real-time data transfer is crucial and low latency is required, the first method may be preferred due to its immediate data transmission.
-                                      For applications with high throughput requirements, where sending data in batches can improve overall efficiency, the second method would be more suitable.
-                                      The speed at which the second method can record data depends on several factors, but storing data in arrays and sending in batches can generally achieve
-                                      relatively high recording speeds, especially in comparison to the first method with high data rates. Given that the Artemis board has 384 kB of RAM, 
-                                      the amount of data that can be stored without running out of memory depends on various factors such as the size of data elements and the overhead of data structures. 
-                                      With careful memory management, it should be possible to store thousands to tens of thousands of data points without exhausting the available memory.</P>
+                                    <p>Through this lab, I've learned about two methods of sending data: sending each data point individually vs. storing the data points in arrays and sending them in batches. While the first method allows for real-time data transfer and reduces memory usage, sending each timestamp individually incurred more overhead. By storing the data in arrays and sending them in batches, the overhead of establishing connections and sending data repeatedly is reduced. This also allows for higher throughput and better efficiency. However, using arrays can introduce latency if the array becomes too large or if the array is filling up. If real-time data transfer is crucial and low latency is required, the first method may be preferred due to its immediate data transmission. For applications with high throughput requirements, where sending data in batches can improve overall efficiency, the second method would be more suitable. The speed at which the second method can record data depends on several factors, but storing data in arrays and sending in batches can generally achieve relatively high recording speeds, especially in comparison to the first method with high data rates. Given that the Artemis board has 384 kB of RAM, the amount of data that can be stored without running out of memory depends on various factors such as the size of data elements and the overhead of data structures. With careful memory management, it should be possible to store thousands to tens of thousands of data points without exhausting the available memory.</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
@@ -337,12 +314,10 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" width="300" src="assets/img/lab2/imu.jpeg" alt="..." />
+                                    <img class="img-fluid rounded mb-5" width="212" src="assets/img/lab2/imu2.jpeg" alt="..." />
                                     <!-- Portfolio Modal - Text-->
                                     <h3>GOAL</h3>
-                                    <p>The purpose of this lab involved familiarizing ourselves with the IMU sensor and the RC car. 
-                                        We collected data from the accelerometer and the gyroscope on the sensor, which were then used to calculate 
-                                        information on the orientation and location of the car.
+                                    <p>The purpose of this lab involved familiarizing ourselves with the IMU sensor and the RC car. We collected data from the accelerometer and the gyroscope on the sensor, which were then used to calculate information on the orientation and location of the car.
                                     </p>
                                     <h3>SETUP</h3>
                                     <ul style="list-style-type:none;">
@@ -356,22 +331,11 @@
                                     <p>The image below shows the IMU sensor connected to the Artemis Nano board by a QWIIC connector.
                                         <img class="img-fluid rounded" width="200" src="assets/img/lab2/setup.jpeg" alt="..." />
                                     </p>
-                                    <p>To ensure the connection of the sensor, an example from the IMU library was used. 
-                                        In the example code, the variable AD0_VAL represents the value of the last bit in the I2C address.
-                                        For this case, AD0_VAL should be set to 0 since the ADR jumper is closed. 
-                                        In addition to this change, a chunk of code was added such that when the board started running,
-                                        the LED on the board would blink three times. This served as a visual indication
-                                        that would be helpful later in the lab. <br>
+                                    <p>To ensure the connection of the sensor, an example from the IMU library was used. In the example code, the variable AD0_VAL represents the value of the last bit in the I2C address.For this case, AD0_VAL should be set to 0 since the ADR jumper is closed. In addition to this change, a chunk of code was added such that when the board started running,the LED on the board would blink three times. This served as a visual indicationthat would be helpful later in the lab. <br>
                                         The Arduino code, along with the Serial Monitor output:
                                         <img class="img-fluid rounded" src="assets/img/lab2/example.png" alt="..." />
                                     </p>
-                                    <p>While observing the acceleration and gyroscope data, I noticed a few things:
-                                        When the board is rotated, the gyroscope data changes according to the axes of rotation, while the accelerometer data doesn't change.
-                                        As an example, when the board is rotated around the z-axis, there are changes on the gyroscope data for the z-axis.
-                                        Flipping the board reflects the same results as rotating the board, but a more sudden change with the gyroscope.
-                                        Accelerating the board results in changes in the accelerometer data. For example, accelerating the board forward
-                                        results in an increase in acceleration along the x-axis. In summary, the gyroscope detects angular velocity around its
-                                        axes, while the accelerometer detects linear acceleration along its axes.
+                                    <p>While observing the acceleration and gyroscope data, I noticed a few things: When the board is rotated, the gyroscope data changes according to the axes of rotation, while the accelerometer data doesn't change. As an example, when the board is rotated around the z-axis, there are changes on the gyroscope data for the z-axis. Flipping the board reflects the same results as rotating the board, but a more sudden change with the gyroscope. Accelerating the board results in changes in the accelerometer data. For example, accelerating the board forward results in an increase in acceleration along the x-axis. In summary, the gyroscope detects angular velocity around its axes, while the accelerometer detects linear acceleration along its axes.
                                     </p>
                                     <h3>ACCELEROMETER TASK 1</h3>
                                     <p>The accelerometer on the IMU can be useful in calculating the roll and pitch values, with the equations:<br>
@@ -457,9 +421,66 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <img class="img-fluid rounded mb-5" width="250" src="assets/img/lab3/tof.jpg" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <h3>GOAL</h3>
+                                    <p>The purpose of this lab is to familiarize ourselves with the Time of Flight (ToF) sensors, VL53L1X, which can be used to measure the distance away from an object. Two ToF sensors were attached to the RC car and used to collect data simultaneously. 
+                                    </p>
+                                    <h3>PRELAB</h3>
+                                    <p>The two sensors share an I2C address of 0x52 by default, based on the VL53L1X datasheet.
+                                    </p>
+                                    <p>Because the address of a ToF sensor is hardwired on the board, the two sensors can't be accessed individually. There are two approaches to solving this issue. One approach is to keep the same address on the two sensors, but alternate between using each sensor through the program while both sensors are powered. An issue with this approach is the delay involved with turning sensors back on. Another option is to change the address of one sensor during setup, through the shutdown pins, so the Artemis can differentiate between the two. I went with the latter approach, and soldered the XSHUT pin of one sensor to GPIO 7 on the Artemis board. This way, the corresponding sensor can be shut off during setup and the address of the other sensor can be changed. Following this, the first sensor can be turned back on, and the two sensors can now work simultaneously with different addresses. 
+                                    </p>
+                                    <p>Given the range and angular sensivity of the ToF sensors, I've decided to place one in the front of the car and the other on one side of the car. The front sensor allows the RC car to detect obstacles directly in its path, allowing it to react promptly and avoid obstables while moving forward. With one sensor on the side of the car, there is limited coverage for obstacles that might approach from the side. Some scenarios where the car will miss obstacles include blind spots and obstacles that are close to it. When obstacles are in blind spots like the side of the car without the ToF sensor, or blind spots caused by a sharp turn, the obstacles will be missed until the car changes direction. Objects very close to the car's side might also be missed by the side sensor if its range doesn't extend far enough laterally. 
+                                    </p>
+                                    <h3>SETUP</h3>
+                                    <ul style="list-style-type:none;">
+                                        <li>The materials required for this lab include:</li>
+                                        <li>1. An Artemis Nano board</li>
+                                        <li>2. A USB cable</li>
+                                        <li>3. Two 4m ToF sensors</li>
+                                        <li>4. A QWIIC breakout board</li>
+                                        <li>5. Two QWIIC connectors</li>
+                                        <li>6. A ruler or graph paper</li>
+                                    </ul>
+                                    <p>The image below depicts the wiring diagram with two ToF sensors, an IMU sensor, a QWIIC breakout board, and the Artemis Nano board:<br>
+                                        <img class="img-fluid rounded mb-5" src="assets/img/lab3/wiring_diagram.jpeg" alt="..." />
+                                    </p>
+                                    <h3>TASK 1: Connecting a ToF Sensor to the Artemis</h3>
+                                    <p>To connect a ToF sensor to the Artemis board, I cut off one end of the QWIIC connector and soldered it to the sensor. By checking the QWIIC connector datasheet, one can determine that the red wire connects to VIN, black to GND, blue to SDA, and yellow to SCL. Then, the other end of the QWIIC connector is attached to the QWIIC breakout board, which is then connected to the Artemis board. The XSHUT pin was also soldered to GPIO 7 for later use.<br>
+                                        <img class="img-fluid rounded mb-5" width="300" src="assets/img/lab3/one_tof_connected.JPG" alt="..." />
+                                    </p>
+                                    <h3>TASK 2: Artemis scanning for I2C device</h3>
+                                    <p>By burning Example5_wire_I2C in Apollo3 examples, the Artemis detected a sensor with address 0x29, which is different from the expected 0x52. By observing the binary representation of 0x29 and 0x52, one can see that 0x29 is 0x52 bitshifted to the right. This is because the rightmost bit is used to indicate a read or write to the address.<br>
+                                        <img class="img-fluid rounded mb-5" src="assets/img/lab3/i2c_address.png" alt="..." />
+                                    </p>
+                                    <h3>TASK 3: Three Modes of the ToF sensor</h3>
+                                    <p>Time of Flight sensors offer three modes of operation to optimize ranging performance based on the maximum expected range. The short range mode is optimized for close-range detection and provides high accuracy and resolution within its range, but is limited in its detection range. The long range mode offers the maximum detection range, with reduced accuracy and resolution compared to shorter-range modes. This mode also involves longer measurement times, which may introduce delays in detecting nearby objects. The medium range mode offers a balance between detection range and accuracy. Considering the size of the car, the short mode is adequate. This can change later, as testing will better inform us of the needs of the car. 
+                                    </p>
+                                    <p>To test the accuracy of the ToF sensor in the short range mode, Example1_ReadDistance in Apollo3 examples was used. Since the default mode is the long range mode, a line was added to the setup code:<br>
+                                        <code>distanceSensor.setDistanceModeShort();</code><br>
+                                        50 measurements were taken with the ToF sensor at 30 mm, 60 mm, 90 mm, and 120 mm from a wall. The average of the 50 readings were then plotted against the actual, expected measurements, as shown below. The actual sensor deviates more and more from the expected as the distance increases, which means a decrease in accuracy. In terms of repeatability, the 50 measurements taken at each distance were relatively consistent, and even more so at shorter distances. The experiment was then repeated for a darker environment, which showed higher accuracy.<br>
+                                        <img class="img-fluid rounded mb-5" width="350" src="assets/img/lab3/measurements_light.png" alt="..." />
+                                        <img class="img-fluid rounded mb-5" width="350" src="assets/img/lab3/measurements_dark.png" alt="..." />
+                                    </p>
+                                    <h3>TASK 4: Two ToF Sensors</h3>
+                                    <p>Both Time of Flight sensors are now ready to be wired to the Artemis board (based on the wiring diagram in the prelab)! As mentioned in the prelab, during setup, one sensor was turned off while the address of the other sensor was changed, and then turned back on. By doing so, the two sensors can now be recognized separately. The Setup code snippet: <br>
+                                        <img class="img-fluid rounded" width="500" src="assets/img/lab3/setup_code.png" alt="..." /> <br>
+                                        The output displays independent measurements from the two ToF sensors: <br>
+                                        <img class="img-fluid rounded mb-5" width="300" src="assets/img/lab3/output_measurements.png" alt="..." />
+                                    </p>
+                                    <h3>TASK 5: ToF Sensor Speed</h3>
+                                    <p>To determine the time it takes for the sensor to finish a measurement, a piece of code was written to print the Artemis clock time continuously, and the new ToF sensor data from both sensors only when available. The corresponding code and its output:<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab3/measurement_time.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" width="250" src="assets/img/lab3/measurement_time_output.png" alt="..." /><br>
+                                        As seen from the output, it takes approximately 60 ms for the sensors to produce a distance measurement. Another thing to note is that the loop takes roughly 7 ms to execute without any measurements ready, and 11-12 ms with measurements to print. The main limiting factor is the internal delay of the sensor.
+                                    </p>
+                                    <br>
+                                    <h3>TASK 6: Time v. Distance</h3>
+                                    <p>The next step was to send these time-stamped ToF readings over Bluetooth to the computer, and analyze the data with a plot in Jupyter notebook. A new notification handler was written to receive the string from the Artemis, parse the string and store the values into three arrays, corresponding to the time, distance reading from sensor one, and distance reading from sensor two. The arrays were then used to generate a plot of the data with time on the x-axis and ToF data on the y-axis.<br>
+                                        The resulting graph:<br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab3/timevdistance.png" alt="..." /><br>
+                                    </p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
