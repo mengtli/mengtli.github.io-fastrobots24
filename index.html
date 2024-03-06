@@ -513,21 +513,7 @@
                                     <img class="img-fluid rounded mb-5" width="275" src="assets/img/lab4/motor_driver.jpeg" alt="..." />
                                     <!-- Portfolio Modal - Text-->
                                     <h3>GOAL</h3>
-                                    <p>The purpose of this lab involved implementing control of RC car, using motor drivers and open loop control. By the end ofthe lab, the car could follow a set of pre-programmed moves, through the Artemis board and dual motor drivers.</p>
-                                    <h3>SETUP</h3>
-                                    <ul style="list-style-type:none;">
-                                        <li>The materials required for this lab include:</li>
-                                        <li>1. An Artemis Nano board</li>
-                                        <li>2. A USB cable</li>
-                                        <li>3. An 9DOF IMU sensor</li>
-                                        <li>4. Two 4m ToF sensors</li>
-                                        <li>5. A QWIIC breakout board</li>
-                                        <li>6. Two QWIIC connectors</li>
-                                        <li>7. A JST2 connector and cable</li>
-                                        <li>8. A Force1 RC car</li>
-                                        <li>9. A Li-Ion 3.7V 850mAh battery</li>
-                                        <li>10. Two dual motor drivers</li>
-                                    </ul>
+                                    <p>The purpose of this lab involved implementing control of RC car, using motor drivers and open loop control. By the end of the lab, the car could follow a set of pre-programmed moves, through the Artemis board and dual motor drivers.</p>
                                     <h3>PRELAB</h3>
                                     <p>There were a few factors to consider when mounting the motor drivers. First, for control on the Artemis board, I decided to use GPIO 15 and 16 for one motor, and GPIO 2 and 3 for the other. The main consideration in choosing these pins were their PWM capabilities. Then, the Artemis board and the motor drivers were powered with two separate batteries since using one battery would result in transient effects, which would reset the microcontroller. Using the same battery could also lead to noise from the motors that could affect the sensors attached to the Artemis board. With these factors in mind, I drew the following wiring diagram:<br>
                                         <img class="img-fluid rounded" src="assets/img/lab4/circuit_diagram.jpeg" alt="..." />
@@ -547,7 +533,7 @@
                                         </div>
                                         <img class="img-fluid rounded" width="250" src="assets/img/lab4/two_directions_code.png" alt="..." /><br>
                                     </p>
-                                    <p>Then, the 850 mAh battery was attached and the wheels were tested again to ensure that the circuit works while being fully battery powered. The wheels were programmed to spin in one direction for one second, stop or slow down for a second, and then spin in the other direction for another second (all in a loop). The video below shows all of the wheels spinning correctly with the batteries attached.<br>
+                                    <p>Then, the 850 mAh battery was attached and the wheels were tested again to ensure that the circuit works while being fully battery powered. The wheels were programmed to spin in one direction for a second, stop or slow down for a second, and then spin in the other direction for another second (all in a loop). The video below shows all of the wheels spinning correctly with the batteries attached.<br>
                                         <div class="embed-container">
                                             <iframe width="480" height="300" src="https://youtube.com/embed/86f-RTkLRXs" frameborder="0" allowfullscreen></iframe>
                                         </div>
