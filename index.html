@@ -97,9 +97,9 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                            <img class="img-fluid rounded mb-5" width="266" src="assets/img/lab4/motor_driver.jpeg" alt="..." />
                         </div>
-                        <h5 class="text-center">Lab 4: Open Loop Control</h5>
+                        <h5 class="text-center">Lab 4: Motors and Open Loop Control</h5>
                     </div>
                     <!-- Portfolio Item 5-->
                     <div class="col-sm-3">
@@ -426,13 +426,6 @@
                                     <h3>GOAL</h3>
                                     <p>The purpose of this lab is to familiarize ourselves with the Time of Flight (ToF) sensors, VL53L1X, which can be used to measure the distance away from an object. Two ToF sensors were attached to the RC car and used to collect data simultaneously. 
                                     </p>
-                                    <h3>PRELAB</h3>
-                                    <p>The two sensors share an I2C address of 0x52 by default, based on the VL53L1X datasheet.
-                                    </p>
-                                    <p>Because the address of a ToF sensor is hardwired on the board, the two sensors can't be accessed individually. There are two approaches to solving this issue. One approach is to keep the same address on the two sensors, but alternate between using each sensor through the program while both sensors are powered. An issue with this approach is the delay involved with turning sensors back on. Another option is to change the address of one sensor during setup, through the shutdown pins, so the Artemis can differentiate between the two. I went with the latter approach, and soldered the XSHUT pin of one sensor to GPIO 7 on the Artemis board. This way, the corresponding sensor can be shut off during setup and the address of the other sensor can be changed. Following this, the first sensor can be turned back on, and the two sensors can now work simultaneously with different addresses. 
-                                    </p>
-                                    <p>Given the range and angular sensivity of the ToF sensors, I've decided to place one in the front of the car and the other on one side of the car. The front sensor allows the RC car to detect obstacles directly in its path, allowing it to react promptly and avoid obstables while moving forward. With one sensor on the side of the car, there is limited coverage for obstacles that might approach from the side. Some scenarios where the car will miss obstacles include blind spots and obstacles that are close to it. When obstacles are in blind spots like the side of the car without the ToF sensor, or blind spots caused by a sharp turn, the obstacles will be missed until the car changes direction. Objects very close to the car's side might also be missed by the side sensor if its range doesn't extend far enough laterally. 
-                                    </p>
                                     <h3>SETUP</h3>
                                     <ul style="list-style-type:none;">
                                         <li>The materials required for this lab include:</li>
@@ -443,6 +436,13 @@
                                         <li>5. Two QWIIC connectors</li>
                                         <li>6. A ruler or graph paper</li>
                                     </ul>
+                                    <h3>PRELAB</h3>
+                                    <p>The two sensors share an I2C address of 0x52 by default, based on the VL53L1X datasheet.
+                                    </p>
+                                    <p>Because the address of a ToF sensor is hardwired on the board, the two sensors can't be accessed individually. There are two approaches to solving this issue. One approach is to keep the same address on the two sensors, but alternate between using each sensor through the program while both sensors are powered. An issue with this approach is the delay involved with turning sensors back on. Another option is to change the address of one sensor during setup, through the shutdown pins, so the Artemis can differentiate between the two. I went with the latter approach, and soldered the XSHUT pin of one sensor to GPIO 7 on the Artemis board. This way, the corresponding sensor can be shut off during setup and the address of the other sensor can be changed. Following this, the first sensor can be turned back on, and the two sensors can now work simultaneously with different addresses. 
+                                    </p>
+                                    <p>Given the range and angular sensivity of the ToF sensors, I've decided to place one in the front of the car and the other on one side of the car. The front sensor allows the RC car to detect obstacles directly in its path, allowing it to react promptly and avoid obstables while moving forward. With one sensor on the side of the car, there is limited coverage for obstacles that might approach from the side. Some scenarios where the car will miss obstacles include blind spots and obstacles that are close to it. When obstacles are in blind spots like the side of the car without the ToF sensor, or blind spots caused by a sharp turn, the obstacles will be missed until the car changes direction. Objects very close to the car's side might also be missed by the side sensor if its range doesn't extend far enough laterally. 
+                                    </p>
                                     <p>The image below depicts the wiring diagram with two ToF sensors, an IMU sensor, a QWIIC breakout board, and the Artemis Nano board:<br>
                                         <img class="img-fluid rounded mb-5" src="assets/img/lab3/wiring_diagram.jpeg" alt="..." />
                                     </p>
@@ -510,9 +510,66 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <img class="img-fluid rounded mb-5" width="275" src="assets/img/lab4/motor_driver.jpeg" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <h3>GOAL</h3>
+                                    <p>The purpose of this lab involved implementing control of RC car, using motor drivers and open loop control. By the end ofthe lab, the car could follow a set of pre-programmed moves, through the Artemis board and dual motor drivers.</p>
+                                    <h3>SETUP</h3>
+                                    <ul style="list-style-type:none;">
+                                        <li>The materials required for this lab include:</li>
+                                        <li>1. An Artemis Nano board</li>
+                                        <li>2. A USB cable</li>
+                                        <li>3. An 9DOF IMU sensor</li>
+                                        <li>4. Two 4m ToF sensors</li>
+                                        <li>5. A QWIIC breakout board</li>
+                                        <li>6. Two QWIIC connectors</li>
+                                        <li>7. A JST2 connector and cable</li>
+                                        <li>8. A Force1 RC car</li>
+                                        <li>9. A Li-Ion 3.7V 850mAh battery</li>
+                                        <li>10. Two dual motor drivers</li>
+                                    </ul>
+                                    <h3>PRELAB</h3>
+                                    <p>There were a few factors to consider when mounting the motor drivers. First, for control on the Artemis board, I decided to use GPIO 15 and 16 for one motor, and GPIO 2 and 3 for the other. The main consideration in choosing these pins were their PWM capabilities. Then, the Artemis board and the motor drivers were powered with two separate batteries since using one battery would result in transient effects, which would reset the microcontroller. Using the same battery could also lead to noise from the motors that could affect the sensors attached to the Artemis board. With these factors in mind, I drew the following wiring diagram:<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab4/circuit_diagram.jpeg" alt="..." />
+                                    </p>
+                                    <h3>TASK 1: EXTERNAL POWER SUPPLY AND OSCILLOSCOPE</h3>
+                                    <p>To verify the circuit connection, one dual motor driver was connected to an external power supply and an oscilloscope. To simulate conditions similar to the 850 mAh battery, the power supply was set to 3.7V (the voltage output of the battery). I forgot to take a picture of the oscilloscope setup while I was doing this, and I realized later, and took a picture of the setup for the next step, which was very similar. But basically, the power supply was used in place for the motor in my circuit diagram, and the oscilloscope was used connected to the corresponding GND and VIN pins on the motor driver.<br>
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab4/setup.jpg" alt="..." />
+                                    </p>
+                                    <p>After setting up the connections, a PWM signal was generated to regulate the power on the motor driver output. analogWrite was used to generate a PWM input from the Artemis board, with one input of 0 and the other of 200. The PWM output on the oscilloscope and the corresponding code snippet:<br>
+                                        <img class="img-fluid rounded" style="margin-right:20px" width="250" src="assets/img/lab4/oscillopscope_output.jpg" alt="..." />   
+                                        <img class="img-fluid rounded" width="250" src="assets/img/lab4/oscilloscope_code.png" alt="..." /><br>
+                                    </p>
+                                    <h3>TASK 2: MOTOR TESTING</h3>
+                                    <p>After unscrewing and removing the top of the car, I cut the LED wires, unmounted the PCB, and cut the wires connected to the PCB as close to the board as possible. With this, the car was taken apart. To test the motor drivers one at a time, they were soldered to one of the motors on the car. Still using the external power supply, the wheels were programmed to spin in both directions for 1 second each.<br>
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/aU5CKZ9KGzQ" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <img class="img-fluid rounded" width="250" src="assets/img/lab4/two_directions_code.png" alt="..." /><br>
+                                    </p>
+                                    <p>Then, the 850 mAh battery was attached and the wheels were tested again to ensure that the circuit works while being fully battery powered. The wheels were programmed to spin in one direction for one second, stop or slow down for a second, and then spin in the other direction for another second (all in a loop). The video below shows all of the wheels spinning correctly with the batteries attached.<br>
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/86f-RTkLRXs" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <img class="img-fluid rounded" width="250" src="assets/img/lab4/wheels_spinning_battery.png" alt="..." /><br>
+                                    </p>
+                                    <h3>TASK 3: RE-ASSEMBLING</h3>
+                                    <p>After verifying the functionality of the motors, the car was put together with all the necessary components, as shown in the diagram below.<br>
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab4/car_setup.jpeg" alt="..." /><br>
+                                    </p>
+                                    <h3>TASK 4: CALIBRATION</h3>
+                                    <p>To test the range of the motors, I found the lower limit of the PWM value by decreasing the value until the car wasn't moving anymore. The last value at which the wheels moved is the lower limit in this case. Using the analogWrite function, the lower bound on the PWM was found to be around 30 for the left side, and around 40 for the right side. This meant that if the input values were constant for both sets of motors, then the car would be moving towards the left rather than in a straight line. Thus, a calibration factor had to be incorporated. The video below shows the car moving in a relatively straight line with a calibration factor of 1.375.<br>
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/nZeZJjvk65A" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                    </p>
+                                    <h3>TASK 5: OPEN LOOP CONTROL</h3>
+                                    <p>Demonstrating open loop control, the car was programmed to spin counter-clockwise, move forward, spin clockwise, and then move backward. The video, along with the corresponding code snippet is attached:<br>
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/IEM2ng_C3RQ" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab4/open_loop_control.png" alt="..." /><br>
+                                    </p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
