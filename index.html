@@ -107,7 +107,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                            <img class="img-fluid rounded mb-5" src="assets/img/lab5/PID.png" alt="..." />
                             <h5 class="text-center">Lab 5: PID Control</h5>
                         </div>
                     </div>
@@ -117,9 +117,9 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                            <img class="img-fluid rounded mb-5" src="assets/img/lab5/PID.png" alt="..." />
                         </div>
-                        <h5 class="text-center">Lab 6: Kalman Filters</h5>
+                        <h5 class="text-center">Lab 6: Orientation PID Control</h5>
                     </div>
                 </div>
             </div>
@@ -577,7 +577,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 5<h3 class="text-warning">PID Speed Control</h3></h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 5<h3 class="text-warning">Linear PID Control and Linear Interpolation</h3></h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -585,9 +585,79 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/lab5/PID.png" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <h3>GOAL</h3>
+                                    <p>The purpose of this lab is to understand and implement PID control with the components already attached to the car, as well as implementing extrapolation.</p>
+                                    <h3>PRELAB</h3>
+                                    <p>To setup a system for testing and debugging the PID controller, a few bluetooth commands were set up between the Artemis and the computer. First, a command was added so that control values can be altered over bluetooth, since uploading new code to the Artemis board everytime a value is changed is time consuming, as shown below.<br>
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab5/set_pid_values2.png" alt="..." /><br>
+                                        Following this, another command was added to execute the PID controller over a fixed period of time, collect debugging data in arrays, and retrieve the arrays from the Artemis over Bluetooth. The data recorded includes the timestamps, the distance data from the front ToF sensor, and the PWM values.<br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/pid_start.png" alt="..." /><br>
+                                        In Python, the following procedure started the PID controller and received data over Bluetooth.<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab5/pid_py.png" alt="..." /><br>
+                                    </p>
+                                    <h3>TASK 1: Position Control</h3>
+                                    <p>The goal was to have the car drive as fast as possible towards the wall and stop when it's 1 ft or 304 mm away from the wall. To do this, a function was written to calculate the speed at which the car should be going based on the PID controller values and the ToF sensor readings. The distance measured by the ToF sensor is used to calculate the difference between the target and current distance, which is the error. This error is then used to find the PWM values needed to spin the motors and the direction the car should move in (forward, backward, or stop when at target distance). This PWM value is clamped between 40 and 255 based on the range determined from Lab 4.<br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/pid_func1.png" alt="..." /><br>
+                                    </p>
+                                    <h5>PID Values</h5>
+                                    <p>I went for the simple P controller for its simplicity. Given that the range of motor input values is between 40 PWM and 255 PWM, and that the car can start anywhere from 2000 mm to 4000 mm from the wall, a reasonable range of the proportional controller can be evaluated. At the minimum possible speed and maximum possible distance, the  minimum Kp value would be 40/(4000-300)=0.0108. At the maximum possible speed and minimum possible distance, the maximum Kp value would be 255/(2000-300)=0.15. After trial and error, I found that a Kp value of 0.03 worked best for me. This value presented a balance between speed and overshoot.
+                                    </p>
+                                    <h5>Range and Sampling Time</h5>
+                                    <p>For the ToF sensor to function within the range of 2-4 meters from the wall, I used the long distance mode on the sensor. To account for the relatively low sampling frequency of the ToF sensor, I implemented a range around the target distance from the wall (304 mm) where this target distance would be considered done. By recording the distance reading from the sensor only when new data is ready and only once in every loop by storing it in a variable, the sampling time is also decreased. Furthermore, I only sent all the data over with Bluetooth after the target has been reached, which removed overheads involved with sending data points over within the loop. With this, my sampling time was about 100 ms. This relatively large sampling time is directly proportional to the overshoot I am getting, but it's alright since the controller works.
+                                    </p>
+                                    <h5>Videos and Plots</h5>
+                                    <p>Trial 1: Kp=0.03 on a smooth surface from roughly 2 meters (I don't have a measuring tape, sadly)
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/CQmKdlTQQKo" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/1_distancevtime.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/1_pwmvtime.png" alt="..." /><br>
+                                    </p>
+                                    <p>Trial 2: Kp=0.03 on a rough surface (carpet) from roughly 2 meters
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/RbvKayy5PcM" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/2_distancevtime.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/2_pwmvtime.png" alt="..." /><br>
+                                    </p>
+                                    <p>Trial 3: Kp=0.05 on a rough surface (carpet) from roughly 2 meters (visibly larger overshoots)
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/_pf1N8w2uVE" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/3_distancevtime.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/3_pwmvtime.png" alt="..." />
+                                    </p>
+                                    <p>Having implemented the simple proportional controller, there are definitely advantages to exploring the other ones involving integral and derivative control. The integral controller theoretically improves the steady-state accuracy, as the semi-squiggly steady-state plot represents some steady-state error in my trials. It will also allow for tigether control around the setpoint. The derivative controller can help improve stability and reduce overshoot by anticipating changes in error and dampening rapid fluctuations. I didn't have time to explore these, but they definitely seem worthwhile.
+                                    </p>
+                                    <h3>TASK 2: Extrapolation</h3>
+                                    <p>As mentioned previously, the sampling rate was around 100 ms. This is the frequency at which the ToF sensor was returning distance measurements, and the rate at which the PID control loop was running. To decouple these two rates and enable the control loop to run faster, the control loop logic was changed so that the PID control was calculated during every loop, even if a distance reading isn't ready.</p>
+                                    <h5>Faster Loop</h5>
+                                    <p>The first step involved allowing the loop to calculate PID control values even if the ToF sensor doesn't have new readings. If a new datapoint isn't ready, then the previous measurement was used. To achieve this, the loop that checked for a new datapoint was edited, as shown below:<br>
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab5/4_code.png" alt="..." /><br>
+                                        With this, the rate of the loop has increased from 100 ms approximately 10 ms, as shown below. In comparison to the ToF sensor sampling rate, this is 10 times faster.
+                                        <img class="img-fluid rounded" src="assets/img/lab5/4_timestamps.png" alt="..." /><br>
+                                        Trial 4: Kp=0.03 on a rough surface (carpet) from roughly 2 meters, with faster control loop
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/Nu75xjLY8Nc" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/4_distancevtime.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/4_pwmvtime.png" alt="..." />
+                                    </p>
+                                    <h5>Extrapolator</h5>
+                                    <p>The next step was to use an extrapolator. Instead of using an old datapoint to pass to the PID controller, an estimate for the car's distance from the wall was calculated with the two most recent readings from the sensor. The extrapolator function calculates the slope corresponding to the last two readings, and then estimates the current distance from the wall based on the amount of time that has passed since the last reading and the calculated slope. The following code snippet was used:
+                                        <img class="img-fluid rounded" width="600" src="assets/img/lab5/5_code.png" alt="..." /><br>
+                                        Trial 5: Kp=0.03 on a rough surface (carpet) from roughly 2 meters, with extrapolation
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/M4b6wg07Y48" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/5_distance.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab5/5_pwm.png" alt="..." />
+                                    </p>
+
+
+
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
@@ -609,7 +679,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 6<h3 class="text-warning">Kalman Filters (Sensor Fusion)</h3></h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 6<h3 class="text-warning">Orientation PID Control</h3></h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -617,7 +687,7 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/lab5/PID.png" alt="..." />
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-4">We have not gotten to this lab yet :(</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
