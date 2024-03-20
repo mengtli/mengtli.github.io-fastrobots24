@@ -117,9 +117,29 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/lab5/PID.png" alt="..." />
+                            <img class="img-fluid rounded mb-5" src="assets/img/lab6/pitchrollyaw.webp" alt="..." width="152"/>
                         </div>
                         <h5 class="text-center">Lab 6: Orientation PID Control</h5>
+                    </div>
+                    <!-- Portfolio Item 7-->
+                    <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal7">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..."/>
+                        </div>
+                        <h5 class="text-center">Lab 7: Kalman Filters</h5>
+                    </div>
+                    <!-- Portfolio Item 8-->
+                    <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal8">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..."/>
+                        </div>
+                        <h5 class="text-center">Lab 8: Stunts</h5>
                     </div>
                 </div>
             </div>
@@ -655,9 +675,6 @@
                                         <img class="img-fluid rounded" width="400" src="assets/img/lab5/5_distance.png" alt="..." /><br>
                                         <img class="img-fluid rounded" width="400" src="assets/img/lab5/5_pwm.png" alt="..." />
                                     </p>
-
-
-
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
@@ -687,7 +704,104 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/lab5/PID.png" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/lab6/pitchrollyaw.webp" alt="..." width="300" />
+                                    <!-- Portfolio Modal - Text-->
+                                    <h3>GOAL</h3>
+                                    <p>The purpose of this lab involved experimenting with orientation PID control with the IMU sensor, in comparison to using the ToF sensors in the previous lab. To get experience with orientation control, we were tasked with controlling the yaw of the car.
+                                    </p>
+                                    <h3>PRELAB</h3>
+                                    <p>To prepare for testing and debugging the orientation PID controller, commands similar to those used for the speed PID controller were used. The following changes PID values:<br>
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab5/set_pid_values2.png" alt="..." /><br>
+                                        The second command, used to start the controller, was modified to use the IMU sensor in place of the ToF sensors. The command prints out timestamps, the yaw data from the gyroscope of the IMU, and the motor PWM values over Bluetooth.<br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab6/pid_orient.png" alt="..." /><br>
+                                        Lastly, the Python code to receive data over Bluetooth was also modified slightly.<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab6/pid_py.png" alt="..." /><br>
+                                    </p>
+                                    <h3>TASK: ORIENTATION CONTROL</h3>
+                                    <p>To demonstrate my understanding of orientation PID control, I decided to have the car rotate to an angle of 180 degrees from its original position. A function similar to that of the previous lab was used to calculate the speed at which the car should be spinning based on the PID values and gyroscope readings. After calculating the yaw orientation with the IMU gyroscope z reading, it was used to find an error from the target angle. The error then determines the PWM values needed to spin the motors and whether the car should spin counter-clockwise, clockwise, or stop spinning.<br>
+                                        <img class="img-fluid rounded" width="300" src="assets/img/lab6/pid_control.png" alt="..." /><br>
+                                    </p>
+                                    <h5>P CONTROLLER</h5>
+                                    <p>The first step was to start with the simplest P controller. It would be ideal to have minimal overshoot with the Proportional controller so that the Integral and Derivation controllers can balance it, allowing the car to spin to its desired angle as fast as possible. Below are a few results of the yaw output from testing and experimenting. As can be seen, the end value is roughly 180 degrees more than the original orientation, which is the goal. However, it seemed weird that as I am ramping up the Kp value, the overshoots don't increase significantly. They all seem alright.<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab6/kp=8.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" src="assets/img/lab6/kp=10.png" alt="..." /><br>
+                                    </p>
+                                    <p>Although my results seem a bit off to me, I settled my Kp value for 20. At this value, the car rotated rather quickly and was able to stop as intended. Although there was slight overshoot, it was acceptable for the speed at which the rotation was achieved. The figures below show the yaw values as well as the error values calculated through the trial. I will be asking the TAs about this during my lab section tomorrow, as I don't have much time left to test and debug.<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab6/kp=20.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" src="assets/img/lab6/kp=20_error.png" alt="..." /><br>
+                                    </p>
+                                    <h3>DISCUSSION</h3>
+                                    <h5>Digital Integration</h5>
+                                    <p>Because we have to integrate the gyroscope data to estimate the orientation of the car, integration drift can occur. Small errors in gyroscope measurements, like bias or noise, can accumulate over time. These errors cause the estimated orientation to deviate from the true orientation, especially during long-duration operations, and is thus called integration drift. The biases and noises can, of course, also lead to an offset or deviation from a correct measurement. They would need to be accounted for.
+                                    </p>
+                                    <h5>Bias</h5>
+                                    <p>My IMU sensor does seem to have an bias where there is an offset in the sensor's input. Initially, my car was spinning three full circles before coming to a stop with the intial code. With this, I calibrated my yaw calculation from the gyroscope output such that this bias/offset was accounted for.
+                                    </p>
+                                    <h5>Maximum Velocity</h5>
+                                    <p>The gyroscope on the ICM20948 has a programmable full-scale range of ±250, ±500, ±1000, and ±2000 degrees per second. This full-scale range controls the sensitivity of the gyroscope, and thus the maximum rotational velocity that the gyroscope can read. The default setting is ±500 degrees per second, which is sufficient for our applications. 
+                                    </p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 7-->
+        <div class="portfolio-modal modal fade" id="portfolioModal7" tabindex="-1" aria-labelledby="portfolioModal7" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 7<h3 class="text-warning">Kalman Filters</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 8-->
+        <div class="portfolio-modal modal fade" id="portfolioModal8" tabindex="-1" aria-labelledby="portfolioModal8" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 8<h3 class="text-warning">Stunts</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-4">We have not gotten to this lab yet :(</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
