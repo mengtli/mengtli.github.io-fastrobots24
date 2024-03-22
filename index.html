@@ -782,11 +782,37 @@
                                     <img class="img-fluid rounded mb-5" width="400" src="assets/img/lab7/kalman_filter.jpeg" alt="..." />
                                     <!-- Portfolio Modal - Text-->
                                     <h3>GOAL</h3>
-                                    <p>The objective of this lab is to experiment with Kalman filters, and use it to supplement the slowly sampled ToF data from Lab 5. The will allow the car to speed towards the wall even faster.
+                                    <p>The objective of this lab is to experiment with Kalman filters, and use it to supplement the slowly sampled ToF data from Lab 5. The will allow the car to drive even faster.
                                     </p>
                                     <h3>TASK 1: Estimate the Drag and Momentum</h3>
-                                    <p>
-
+                                    <p><img class="img-fluid rounded" width="250" src="assets/img/lab7/state_space_model.jpeg" alt="..." /><br>
+                                        In order to build the state space model for the system, we need to estimate the drag and friction forces acting on the car, along with its inertia. This will help determine the drag and momentum terms in the A and B matrices of the state space model. To achieve this, the car was driven at a constant input motor speed of approximately 70% of full speed towards a wall and stopped right before crashing. The relevant Arduino code, along with the results are shown for the ToF sensor reading, the computed velocity, and the motor input.<br>
+                                        <img class="img-fluid rounded" width="350" src="assets/img/lab7/dandm_arduino.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" width="350" src="assets/img/lab7/distancevtime.png" alt="..." />
+                                        <img class="img-fluid rounded" width="350" src="assets/img/lab7/velocityvtime.png" alt="..." />
+                                        <img class="img-fluid rounded" width="350" src="assets/img/lab7/pwmvtime.png" alt="..." /><br>
+                                        From the data, the steady state speed, 90% rise time, and the speed at 90% risetime can be determined. From equations provided for steady state in lecture, along with the steady state values, d and m can be determined as well. The python code and the calculated values:<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab7/dandm.png" alt="..." /><br>    
+                                    </p>
+                                    <h3>TASK 2: Initialize the Kalman Filter</h3>
+                                    <h5>State Space Model</h5>
+                                    <p>Given the values above, the A and B matrices are:<br>
+                                        <img class="img-fluid rounded" width="250" src="assets/img/lab7/AandB2.jpeg" alt="..." /><br>
+                                        To discretize the A and B matrices, the following calculations were performed. To calculate the sampling time, the average of the difference between each timestamp was taken.<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab7/AdandBd.png" alt="..." /><br>
+                                        The C matrix is simply [-1, 0] since the only measurement is taken from the ToF sensor, as the negative distance from the wall. The intial state vector, x, is [[-TOF[0]],[0]]. This is because at the start, the car is stationary at a fixed distance from the wall.
+                                    </p>
+                                    <h5>Process Noise and Measurement Noise Matrices</h5>
+                                    <p>In order for the Kalman Filter to work, the process noise and sensor noise covariance matrics also need to be specified. If the process noise is larger, the filter will place more trust on the sensor measurements. If the sensor noise is larger, the filter will trust the predictions from the model more. Also, if the vales cannot be too small or too big in order for the Kalman Filter to function properly. I chose the same covariance values as provided in lecture: σ1 = 27.7 mm, σ2 = 27.7 mm/s, and σ3 = 20 mm. These constants were then used to implement the noise matrices needed for the model.
+                                        <img class="img-fluid rounded" src="assets/img/lab7/noise_covariance.png" alt="..." /><br>
+                                    </p>
+                                    <h3>TASK 3:Implement and Test the Kalman Filter</h3>
+                                    <p>To sanity check the parameters chosen, the Kalman Filter implementation provided was used in Jupyter first. The relevant code:<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab7/kf_sanity_check.png" alt="..." /><br>
+                                        With the initial parameters chosen earlier, the graph is generated and shown below. The model does pretty well in predictions after the first two, and adheres closely to the ToF distance measurements. To account for this and tune the parameters, I experimented with various process and sensor noise values. The second graph depicts an increase in σ1, which resulted in a closer prediction to the measurements from the beginning. This makes sense since a higher value represents more process noise, and places more trust on the sensor measurements than the process calculations. The third graph illustrates an even closer plot, as a result of decreasing σ3. A lower σ3 means there is less noise in the ToF sensor measurements, and places more trust in the measurements.<br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab7/distvtime1.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab7/distvtime2.png" alt="..." /><br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab7/distvtime3.png" alt="..." /><br>
                                     </p>
 
 
