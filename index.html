@@ -137,7 +137,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..."/>
+                            <img class="img-fluid rounded mb-5" width = "195" src="assets/img/lab8/stunt_pic.jpeg" alt="..."/>
                         </div>
                         <h5 class="text-center">Lab 8: Stunts</h5>
                     </div>
@@ -747,7 +747,7 @@
                                     <p>The gyroscope on the ICM20948 has a programmable full-scale range of ±250, ±500, ±1000, and ±2000 degrees per second. This full-scale range controls the sensitivity of the gyroscope, and thus the maximum rotational velocity that the gyroscope can read. The default setting is ±250 degrees per second, which wasn't sufficient for our applications. During the first few runs, the car would spin three full circles, but the recorded measurements show only a 180 degree change in angle, which meant an enormous accumulation of error. Thus, it was changed to ±1000 dps with:<br>
                                         <code>
                                             pICM_20948_fss_t myFSS;<br>
-                                            myFSS.g = dps500;
+                                            myFSS.g = dps1000;
                                         </code>
                                     </p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -814,9 +814,6 @@
                                         <img class="img-fluid rounded" width="400" src="assets/img/lab7/distvtime2.png" alt="..." /><br>
                                         <img class="img-fluid rounded" width="400" src="assets/img/lab7/distvtime3.png" alt="..." /><br>
                                     </p>
-
-
-
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
@@ -846,9 +843,31 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..." />
+                                    <img class="img-fluid rounded mb-5" width = "400" src="assets/img/lab8/stunt_pic.jpeg" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">We have not gotten to this lab yet :(</p>
+                                    <h3>GOAL</h3>
+                                    <p>This lab combines the work from all previous labs to perform a fast stunt. Task A involves driving the car fast towards the wall, performing a flip upon reaching the sticky mat located 0.5m from the wall, and driving back in the direction it came from.</p>
+                                    <h3>TASK A: Position Control</h3>
+                                    <p>This stunt consists of three parts: the forward motion, the flip, and the backward motion. The flip of the car requires it to be moving forward at high speeds and then suddenly moving backwards at high speeds. This sudden change in momentum will result in the desired flip. With this said, the Arduino code I used is shown:<br>
+                                        <img class="img-fluid rounded mb-5" width = "400" src="assets/img/lab8/pid_stunt1.png" alt="..." /><br>
+                                        <img class="img-fluid rounded mb-5" width = "400" src="assets/img/lab8/pid_stunt2.png" alt="..." /><br>
+                                        After receiving the distance reading from the ToF sensor, the car would perform the flip if the distance is less than the threshold desired, and would simply move forward if it has yet to reach the threshold. After the threshold is reached, the wheels were stopped suddenly to initiate that change in momentum for the flip. Then, the wheels would move in the direction it came from. This series of steps should produce the desired stunt. However, because I decided to use a flip week on this assignmnet and is doing it too late, I couldn't find the sticky mats in the lab anymore and couldn't test it properly. The videos below show failed attempts of the stunt on wood floors. Because of the lack of friction, the flip didn't occur. Instead, the car simply moved forward and then backward :(
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/Zn6I6nmBdyg" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/kVwuhpjqJz0" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/uuRd38EOEFI" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                    </p>
+                                    <h3>TASK B: ORIENTATION CONTROL</h3>
+                                    <p>After finding out that the previous stunt wouldn't work on my wood floors, I attempted the other option for this lab. This task involves driving fast towards a wall, and then intiating a 180 degree turn when the car is within 3 feet from the wall. This involved integrating the gyroscope and the ToF sensor for orientation control when desired. My Arduino code:<br>
+                                        <img class="img-fluid rounded mb-5" width = "400" src="assets/img/lab8/orient_stunt1.png" alt="..." /><br>
+                                        <img class="img-fluid rounded mb-5" width = "400" src="assets/img/lab8/orient_stunt2.png" alt="..." /><br>
+                                        However, this didn't work as desired either. I'm not sure why but I've spent too much time debugging already, and I thought it would be more beneficial if I spent more time on the later labs. Becuase I decided to take a slip week, the deadline overlapped with Lab 9, and I needed to start working on Lab 9. So I ended my trials here. 
+                                    </p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
