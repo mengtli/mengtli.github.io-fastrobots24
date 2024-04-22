@@ -141,6 +141,46 @@
                         </div>
                         <h5 class="text-center">Lab 8: Stunts</h5>
                     </div>
+                    <!-- Portfolio Item 9-->
+                    <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal9">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" width="300" src="assets/img/lab9/mapping.png" alt="..."/>
+                        </div>
+                        <h5 class="text-center">Lab 9: Mapping</h5>
+                    </div>
+                     <!-- Portfolio Item 10-->
+                     <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal10">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..."/>
+                        </div>
+                        <h5 class="text-center">Lab 10: Localization (sim)</h5>
+                    </div>
+                     <!-- Portfolio Item 11-->
+                     <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal11">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..."/>
+                        </div>
+                        <h5 class="text-center">Lab 11: Localization (real)</h5>
+                    </div>
+                     <!-- Portfolio Item 12-->
+                     <div class="col-sm-3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal12">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..."/>
+                        </div>
+                        <h5 class="text-center">Lab 12: Planning and Execution</h5>
+                    </div>
                 </div>
             </div>
         </section>
@@ -879,6 +919,186 @@
                 </div>
             </div>
         </div>
+        <!-- Portfolio Modal 9-->
+        <div class="portfolio-modal modal fade" id="portfolioModal9" tabindex="-1" aria-labelledby="portfolioModal8" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 9<h3 class="text-warning">Mapping</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" width = "250" src="assets/img/lab9/mapping.png" alt="..." /><br>
+                                    <!-- Portfolio Modal - Text-->
+                                    <h3>GOAL</h3>
+                                    <p>The purpose of this lab involves mapping out a static room, which will later be used for localization and navigation tasks. To produce the map, the car will be placed in a few marked locations in the "room" and spin around its axis while collecting ToF distance readings. These readings will then be merged together with transformation matrices, plotted, and used to build the map with straight line segments.</p>
+                                    <h3>CONTROL</h3>
+                                    <p>
+                                        I've chosen to implement PID control on the orientation of the car since it has already been implemented in a previous lab, and enables smaller and more accurate rotations. The car rotates 18 times, in increments of 20 degrees, which sums to a total of 360 degrees. After the car has finished rotating the 20 degree increment, it begins extracting the ToF readings and sending it back to my computer for later analysis. The relevant Arduino code:<br>
+                                        <img width = "350" src="assets/img/lab9/pid_orient1.png" alt="..." />
+                                        <img width = "350" src="assets/img/lab9/pid_orient2.png" alt="..." /><br>
+                                        I used the same PID controller values as evaluated in a previous lab, which proved to work well. For the performance of the controller with these values, please refer to Lab 6! As shown in the video below, the car successfully rotates through 360 degrees in increments.
+                                        <div class="embed-container">
+                                            <iframe width="480" height="300" src="https://youtube.com/embed/1l60EMFjZik" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                    </p>
+                                    <h3>MOTION ANALYSIS</h3>
+                                    <h5>Sensor Drift</h5>
+                                    <p>To reduce sensor drift, a delay of 100 ms was added between measurements to ensure that the robot isn't moving while taking the ToF readings. Although sensor drift can introduce errors over time, the delay helps mitigate the impact of drift on the accuracy of orientation estimation. In addition, the current angle was continuously reset to 0 after reaching a desired orientation.
+                                    </p>
+                                    <h5>Size and Accuracy of Increments</h5>
+                                    <p>The size and accuracy of the increments in which the robot turns contribute to the precision of the orientation estimation. With consistent and small increments of 10 degrees, the orientation estimation can be more accurate. However, even with small increments, there may still be errors due to factors such as sensor noise and mechanical imprecision.
+                                    </p>
+                                    <h5>On-axis Turns</h5>
+                                    <p>I noticed that the robot consistently falls short of returning to its exact orientation, which suggests that there may be limitations in the robot's ability to rotate perfectly on its axis. This could be due to mechanical constraints, wheel slippage, or inaccuracies in motor control system. However, as these errors are consistent across mappings, it can be corrected in the code. 
+                                    </p>
+                                    <p>With these effects, the observed maximum error is around ±3 inches. This is relatively small compared to the scale of a 4x4m room. Thus, the maximum deviation from the true orientation is within an acceptable range for mapping purposes. 
+                                    </p>
+                                    <h3>READ OUT DISTANCES</h3>
+                                    <p>After performing the 360 degree turn at each of the marked positions in the lab space, the ToF distance readings were collected for analysis. To ensure accuracy and make the analysis easier, the car started in the same orientation at every marked position. After collecting data twice at each point to check accuracy, the polar coordinate plots generated are as shown:<br>
+                                        <br>
+                                        <img class="img-fluid rounded mb-5" width = "230" src="assets/img/lab9/polar_1.png" alt="..." />
+                                        <img class="img-fluid rounded mb-5" width = "230" src="assets/img/lab9/polar_2.png" alt="..." />
+                                        <img class="img-fluid rounded mb-5" width = "230" src="assets/img/lab9/polar_3.png" alt="..." />
+                                        <img class="img-fluid rounded" width = "230" src="assets/img/lab9/polar_4.png" alt="..." />
+                                        <img class="img-fluid rounded" width = "230" src="assets/img/lab9/polar_5.png" alt="..." /><br>
+                                        Based on the plots, the behavior seems reliable enough. It's enough to trust that the readings are equally spaced in angular space, and the use of gyroscope values isn't necessary.                                        
+                                    </p>
+                                    <h3>MERGE AND PLOT</h3>
+                                    <p>The next step was to convert the measurements from the ToF sensor to the inertial reference frame of the room with transformation matrices. As provided in lecture, the transformation matrix is given by:<br>
+                                        <img width = "350" src="assets/img/lab9/transformation_matrix.jpeg" alt="..." /><br>
+                                        The last column is the coordinate of the center of the car, relative to the global frame. The rotation portion represents the orientation of the car, using the angle θ between the two x-axes of the global and local frame. However, since there is no translation along the z-axis and only rotation about the z-axis, this matrix simplies to a 3x3 matrix. Another factor to consider is the mounting of the ToF sensor, which is counted for in the robot pose. After plotting all the data onto on map, the results are as shown:<br>
+                                        <br>
+                                        <img class="img-fluid rounded" width = "500" src="assets/img/lab9/map.png" alt="..." /><br>
+                                    </p>
+                                    <h3>Line-Based Map</h3>
+                                    <p>The locations of the actual walls and obstacles were estimated based on the scatter plot, as shown below. There is still quite a bit of noise, which could definitely be mitigated with more trials and taking data at other locations.<br>
+                                        <br>
+                                        <img class="img-fluid rounded" width = "500" src="assets/img/lab9/map_final.png" alt="..." />
+                                    </p>
+                                    
+                                    
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 10-->
+        <div class="portfolio-modal modal fade" id="portfolioModal10" tabindex="-1" aria-labelledby="portfolioModal8" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 10<h3 class="text-warning">Localization (sim)</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" width = "400" src="assets/img/unfinished.png" alt="..." /><br>
+                                    <!-- Portfolio Modal - Text-->
+                                    
+                                    
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 11-->
+        <div class="portfolio-modal modal fade" id="portfolioModal11" tabindex="-1" aria-labelledby="portfolioModal8" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 11<h3 class="text-warning">Localization (real)</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" width = "400" src="assets/img/unfinished.png" alt="..." /><br>
+                                    <!-- Portfolio Modal - Text-->
+                                    
+                                    
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 12-->
+        <div class="portfolio-modal modal fade" id="portfolioModal12" tabindex="-1" aria-labelledby="portfolioModal8" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 12<h3 class="text-warning">Planning and Execution</h3></h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" width = "400" src="assets/img/unfinished.png" alt="..." /><br>
+                                    <!-- Portfolio Modal - Text-->
+                                    
+                                    
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
