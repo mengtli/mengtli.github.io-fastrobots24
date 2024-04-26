@@ -1039,7 +1039,7 @@
                                     </p>
                                     <h3>TASK 2: Odometry Motion Model</h3>
                                     <p>Once the actual movement of the robot has been determined, the next step in the odometry motion model involves calculating the probability that this movement occurred. I assumed a Gaussian distribution to model the noisy control data in the model. With the algorithm for the motion model provided in lecture, the relevant code:<br>
-                                        <img class="img-fluid rounded" src="assets/img/lab10/odometry_motion_model.png" alt="..." />
+                                        <img class="img-fluid rounded" src="assets/img/lab10/odometry_motion_modle1.png" alt="..." />
                                     </p>
                                     <h3>TASK 3: Prediction Step</h3>
                                     <p>Now it's time to predict the robot's position. This involves iterating through each cell in the grid to calculate the probability that the robot moved to its current position from a previous position. Since the grid has 12×9×18 = 1944 possible states, reducing the run time is important. The code first checks whether the probability the state (i.e., grid cell) contains a probability of less than 0.0001, because those states are negligible as they don't contribute much to the belief. After determining the non-negligible states, the odom_motion_model function is used to calculate the probability that the robot started at a prev_pose and ended at a curr_pose, given its control input. The resulting code:<br>
@@ -1047,7 +1047,7 @@
                                     </p>
                                     <h3>TASK 4: Sensor Model</h3>
                                     <p>A sensor model, modeled with the Gaussian distribution, is required for the update step of the Bayes Filter. This model determines the probability that a sensor reading is correct, given the robot's position. The code:<br>
-                                        <img class="img-fluid rounded" src="assets/img/lab10/sensor_model.png" alt="..." />
+                                        <img class="img-fluid rounded" src="assets/img/lab10/sensor_model1.png" alt="..." />
                                     </p>
                                     <h3>TASK 5: Update Step</h3>
                                     <p>Finally, the update step of the Bayes Filter calculates the belief of the robot in each state (i.e., grid cell). This is done by iterating through each grid cell and determining the probability that the robot is in the cell, given the sensor measurement. The belief matrix is then normalized to ensure a valid probability distribution. The resulting code:<br>
