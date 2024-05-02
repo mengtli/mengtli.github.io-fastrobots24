@@ -147,7 +147,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" width="206" src="assets/img/lab9/mapping.png" alt="..."/>
+                            <img class="img-fluid rounded mb-5" width="175" src="assets/img/lab9/mapping.png" alt="..."/>
                         </div>
                         <h5 class="text-center">Lab 9: Mapping</h5>
                     </div>
@@ -157,7 +157,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/lab10/bayes.jpeg" alt="..."/>
+                            <img class="img-fluid rounded mb-5" width="293" src="assets/img/lab10/simulation_result.png" alt="..."/>
                         </div>
                         <h5 class="text-center">Lab 10: Localization (sim)</h5>
                     </div>
@@ -167,7 +167,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..."/>
+                            <img class="img-fluid rounded mb-5" src="assets/img/lab11/localization.png" alt="..."/>
                         </div>
                         <h5 class="text-center">Lab 11: Localization (real)</h5>
                     </div>
@@ -1014,7 +1014,7 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" width = "350" src="assets/img/lab10/bayes.jpeg" alt="..." /><br>
+                                    <img class="img-fluid rounded mb-5" width = "350" src="assets/img/lab10/simulation_result.png" alt="..." /><br>
                                     <!-- Portfolio Modal - Text-->
                                     <h3>GOAL</h3>
                                     <p>The objective of this lab is to implement grid localization using Bayes Filter. By discretizing the continuous state space into a finite 3D grid, the algorithm estimates the robot's pose by updating probabilities associated with each grid cell based on sensor measurements and motion models.</p>
@@ -1060,9 +1060,6 @@
                                         </div>
                                         <img class="img-fluid rounded" width = "480" src="assets/img/lab10/simulation_result.png" alt="..." />
                                     </p>
-                                    
-
-                                    
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
@@ -1092,10 +1089,57 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" width = "400" src="assets/img/unfinished.png" alt="..." /><br>
+                                    <img class="img-fluid rounded mb-5" width="400" src="assets/img/lab11/localization.png" alt="..." /><br>
                                     <!-- Portfolio Modal - Text-->
-                                    
-                                    
+                                    <h3>GOAL</h3>
+                                    <p>Following the previous localization simulation, the objective in this lab is to implement localization using the Bayes filter on the physical robot. Here, the focus is on the update step, utilizing complete 360-degree scans from the Time-of-Flight (ToF) sensor. Due to the inherent noise in the motion of these specific robots, the prediction step does not provide substantial assistance.
+                                    </p>
+                                    <h3>TASK 1: Testing the Simulation</h3>
+                                    <p>I started by verifying the provided Bayes Filter implementation on the virtual robot. The results of the simulation are shown below, where the red line is the odommetry, the green line is the ground truth, and the blue line is the belief.<br>
+                                        <img class="img-fluid rounded" width="400" src="assets/img/lab11/sim_test.png" alt="..." />
+                                    </p>
+                                    <h3>TASK 2: Localizing the Robot</h3>
+                                    <h5>Code Implementation</h5>
+                                    <p>With the provided skeleton code, the function perform_observation_loop had to be completed. The function performs the observation loop, where the robot spins 360 degrees in place while collecting sensor readings. The number of sensor readings is determined by observation_count, which is defined in world.yaml. With the number of sensor readings set to 18, the robot will rotate in increments of 20 degrees and record the sensor data after each rotation. This is all performed within a command that would be sent to the Artemis board. The rest of the function centralizes around retrieving and handling this data from the Artemis. Arrays are created to store the data. Before all 18 data points are retrieved, the asynicio function runs in a loop. The readings are also converted to meters (toF) and radians (IMU). The code is shown below:<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab11/perform_observation_loop.png" alt="..." />
+                                    </p>
+                                    <h5>Trial 1</h5>
+                                    <p>For testing, the robot is placed on four marked poses in the map, and the update step of the Bayes Filter is run once. The results are shown below with the green dot representing ground truth, and the blue dot representing the belief. The four marked poses in the lab are:
+                                        <ul style="list-style-type:none;">
+                                            <li>(-3 ft, -2 ft, 0 deg)</li>
+                                            <li>(0 ft, 3 ft, 0 deg)</li>
+                                            <li>(5 ft, -3 ft, 0 deg)</li>
+                                            <li>(5 ft, 3 ft, 0 deg)</li>
+                                        </ul>
+                                        The results for (-3, -2):<br>
+                                        <img class="img-fluid rounded" width="500" src="assets/img/lab11/trial1_n3_n2.png" alt="..." /><br>
+                                        In this case, the localized pose is extremely accurate, as it overlays the ground truth. The robot was able to perform localization and determine the surrounding walls and obstacles.<br>
+                                        <br>
+                                        The results for (0, 3):<br>
+                                        <img class="img-fluid rounded" width="500" src="assets/img/lab11/trial1_0_3.png" alt="..." /><br>
+                                        The localized pose is still relatively close to the ground truth. There is a slight error, but the robot's localization still proved to be functional and pretty accurate.<br>
+                                        <br>
+                                        The results for (5, -3):<br>
+                                        <img class="img-fluid rounded" width="500" src="assets/img/lab11/trial1_5_n3.png" alt="..." /><br>
+                                        Here, the localized pose on the exact position as the ground truth.<br>
+                                        <br>
+                                        The results for (5, 3):<br>
+                                        <img class="img-fluid rounded" width="500" src="assets/img/lab11/trial1_5_3.png" alt="..." /><br>
+                                        The error for this pose is the largest when comparing the localized pose with the ground truth.
+                                    </p>
+                                    <h5>Trial 2</h5>
+                                    <p>Repeating the testing at every marked position, it can be seen that the localization does indeed perform better at certain poses.<br>
+                                        The results for (-3, -2):<br>
+                                        <img class="img-fluid rounded" width="500" src="assets/img/lab11/trial2_n3_n2.png" alt="..." /><br>
+                                        The results for (0, 3): <br>
+                                        <img class="img-fluid rounded" width="500" src="assets/img/lab11/trial2_0_3.png" alt="..." /><br>
+                                        The results for (5, -3): <br>
+                                        <img class="img-fluid rounded" width="500" src="assets/img/lab11/trial2_5_n3.png" alt="..." /><br>
+                                        The results for (5, 3): <br>
+                                        <img class="img-fluid rounded" width="500" src="assets/img/lab11/trial2_5_3.png" alt="..." />
+                                    </p>
+                                    <p>Through these two trials, the localization functionality of the robot seems solid. The discrepency between the belief and the ground truth at pose (5, 3) may be caused by the large change in distances read by the ToF sensor or just rotational error. When there is a sudden change in the distance to the wall in front of the robot, there is more noise. However, even for these non-ideal situations, the robot seems to localize relatively well. 
+                                    </p>         
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
