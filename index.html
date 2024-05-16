@@ -177,7 +177,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid rounded mb-5" src="assets/img/unfinished.png" alt="..."/>
+                            <img class="img-fluid rounded mb-5" src="assets/img/lab12/cover.png" alt="..."/>
                         </div>
                         <h5 class="text-center">Lab 12: Planning and Execution</h5>
                     </div>
@@ -1161,7 +1161,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 12<h3 class="text-warning">Planning and Execution</h3></h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">LAB 12<h3 class="text-warning">Path Planning and Execution</h3></h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -1169,10 +1169,28 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" width = "400" src="assets/img/unfinished.png" alt="..." /><br>
+                                    <img class="img-fluid rounded mb-5" width = "500" src="assets/img/lab12/cover.png" alt="..." /><br>
                                     <!-- Portfolio Modal - Text-->
-                                    
-                                    
+                                    <h3>GOAL</h3>
+                                    <p>Wrapping up the course and combining our work from all previous labs, this last lab involves having the robot navigate through a set of waypoints as quickly and accurately as possible. With the open-ended nature of this lab, I decided to implement a path-planning algorthm with the orientation and position controllers developed in previous labs. The waypoints desired are:<br>
+                                        <img class="img-fluid rounded" width = "550" src="assets/img/lab12/waypoints_map.jpg" alt="..." />
+                                    </p>
+                                    <h3>POSITION & ORIENTATION CONTROL</h3>
+                                    <p>In the previous labs, the position control function stopped the robot at a set distance from the wall. Now, the robot has to drive forward a certain distance. This change was relatively straightforward: I stored the inital position of the car with the ToF sensor and subtracted the desired distance to get the desired distance from the wall. Then, the rest of the function was the same as before. With this modification, the inputs are the controller values and the distance to move the robot. The same orientation control function from previous labs is used. The inputs are the controller values and the angle at which to spin the robot.
+                                    </p>
+                                    <h3>MOVE FUNCTION</h3>
+                                    <p>Next, I implemented a function to calculate the input for the position and orientation control functions based on the current location of the robot and the next waypoint. The inputs are (x0, y0, θ), the initial orientation of the robot, and (x1, x1), the desired position. The function then calculates the angle for rotation and the distance to travel. 
+                                        <img class="img-fluid rounded" src="assets/img/lab12/move_robot.png" alt="..." />
+                                    </p>
+                                    <h3>LOCALIZATION</h3>
+                                    <p>After moving to each waypoint, the robot localizes to determine its current position and whether it's where it should be. This involved integrating the Bayes Filter used from a previous lab, and extracting the belief. Knowing the current position of the robot, it will then procede to the next waypoint.<br>
+                                        <img class="img-fluid rounded" src="assets/img/lab12/localization.png" alt="..." />
+                                    </p>
+                                    <h3>RESULTS</h3>
+                                    <p>Below is a snippet of the robot at work:</p>
+                                    <div class="embed-container">
+                                        <iframe width="480" height="300" src="https://youtube.com/embed/00R10GkXs6I" frameborder="0" allowfullscreen></iframe>
+                                    </div>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
